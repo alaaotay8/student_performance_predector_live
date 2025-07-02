@@ -1,0 +1,47 @@
+# Git and version control
+.git
+.gitignore
+.github
+
+# Python cache and compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Documentation
+README.md
+*.md
+
+# Training data (optional - remove if you need the CSV for inference)
+data/
+training-results.txt
+
+# Development files
+train_model.py
+src/ml/
