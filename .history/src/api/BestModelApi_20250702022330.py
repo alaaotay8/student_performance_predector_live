@@ -168,17 +168,6 @@ async def predict(
         logger.error(f"Prediction failed: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Prediction failed: {str(e)}")
 
-@app.get("/debug")
-async def debug_info():
-    """Debug endpoint to check API status"""
-    return {
-        "status": "API is running",
-        "model_loaded": model_data is not None,
-        "timestamp": pd.Timestamp.now().isoformat(),
-        "base_dir": BASE_DIR,
-        "model_path": os.path.join(BASE_DIR, "models", "enhanced_student_perf_model.pkl") if model_data else "Not loaded"
-    }
-
 if __name__ == "__main__":
     import uvicorn
     port = int(os.environ.get("PORT", 8080))

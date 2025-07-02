@@ -204,33 +204,18 @@ async function handleFormSubmit(event) {
         });
         
         console.log('API Parameters:', Object.fromEntries(params));
-        console.log('API URL:', `${API_BASE_URL}/predict?${params}`);
         
         // Make API request
         const response = await fetch(`${API_BASE_URL}/predict?${params}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            mode: 'cors',
+            }
         });
         
-        console.log('Response status:', response.status);
-        console.log('Response headers:', response.headers);
-        
         if (!response.ok) {
-            const errorText = await response.text().catch(() => 'Unable to read error details');
-            console.error('Error response:', errorText);
-            
-            let errorData;
-            try {
-                errorData = JSON.parse(errorText);
-            } catch {
-                errorData = { detail: errorText };
-            }
-            
-            throw new Error(errorData.detail || `HTTP error! status: ${response.status} - ${errorText}`);
+            const errorData = await response.json().catch(() => ({}));
+            throw new Error(errorData.detail || `HTTP error! status: ${response.status}`);
         }
         
         const data = await response.json();
